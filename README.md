@@ -1,8 +1,4 @@
-Perfect! I can update your README to **explicitly mention that only a small sample of the datasets is included**, add your **download links**, and keep it professional and GSoC/mentor-friendly. Here’s the **updated version**:
-
----
-
-# ML4Sci_DeepLense – Gravitational Lens Classification & Detection
+# ML4Sci_DeepLense – Gravitational Lens Finding
 
 **Organization:** Machine Learning for Science (ML4SCI)
 **Project:** DeepLense – deep learning pipeline for particle dark matter searches using strong gravitational lensing
@@ -89,7 +85,7 @@ ML4Sci_DeepLense/
 
 **After downloading, place the datasets in these directories:**
 
-```text
+```
 Multi_Class_Classification/dataset/
 Lens_Finding_&_Data_Pipelines/data/
 ```
@@ -147,7 +143,7 @@ Lens_Finding_&_Data_Pipelines/data/
 
 ### Using Notebooks
 
-```bash
+```
 # Multi-Class Classification
 cd ML4Sci_DeepLense/Multi_Class_Classification/notebooks
 jupyter notebook CommonTestI.ipynb
@@ -161,7 +157,7 @@ jupyter notebook lens_detection_pipeline.ipynb
 
 **Multi-Class Classification**
 
-```bash
+```
 python scripts/step1_load_visualize.py
 python scripts/step2_dataloader.py
 python scripts/step3_train_cnn.py
@@ -171,7 +167,7 @@ python scripts/step5_predict.py
 
 **Lens Finding**
 
-```bash
+```
 python src/step1_data_pipeline.py
 python src/step2_train_cnn.py
 python src/step3_evaluate.py
