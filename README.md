@@ -1,229 +1,440 @@
-# ML4Sci_DeepLense – Gravitational Lens Finding
+# 🔭 ML4Sci DeepLense – Gravitational Lens Finding
 
-**Organization:** Machine Learning for Science (ML4SCI)
-**Project:** DeepLense – deep learning pipeline for particle dark matter searches using strong gravitational lensing
-
----
-
-## Overview
-
-This repository contains two workflows for **gravitational lens image analysis** using **Convolutional Neural Networks (CNNs)**, as part of the **DeepLense project**:
-
-1. **Multi-Class Classification (Common Test I)**
-
-   * Classifies **simulated strong lensing images** into three categories:
-
-     * **No Substructure** – lens images without subhalos/vortices
-     * **Subhalo** – lens images with subhalo structures
-     * **Vortex** – lens images with vortex structures
-
-2. **Lens Finding & Data Pipelines (GSoC DeepLense Specific Test V)**
-
-   * Binary classification of **observational galaxy images** to detect lenses.
-   * Handles class imbalance using weighted loss.
-   * Metrics: ROC curve & AUC score.
-
-Both workflows are **CPU-friendly**, modular, and can be executed via **Jupyter notebooks** or **Python scripts**.
-These pipelines contribute to the broader goal of **gravitational lens finding for particle dark matter searches**.
+**Organization:** Machine Learning for Science (ML4SCI)  
+**Project:** DeepLense – Deep Learning Pipeline for Particle Dark Matter Searches using Strong Gravitational Lensing
 
 ---
 
-## Repository Structure
+## 🌌 Overview
+
+This repository contains two deep learning workflows for **gravitational lens image analysis** using **Convolutional Neural Networks (CNNs)** as part of the **DeepLense project**.
+
+### 1️⃣ Multi-Class Classification (Common Test I)
+
+Classifies **simulated strong lensing images** into three categories:
+
+- **No Substructure** – lens images without subhalos or vortices  
+- **Subhalo** – lens images with subhalo structures  
+- **Vortex** – lens images with vortex structures  
+
+---
+
+### 2️⃣ Lens Finding & Data Pipelines (Specific Test V)
+
+Binary classification of **observational galaxy images** to detect **strong gravitational lenses**.
+
+Key features:
+
+- Handles **class imbalance** using weighted loss
+- Evaluated using **ROC curve and AUC score**
+- Designed for **astronomical survey data**
+
+Both workflows are **CPU-friendly**, modular, and can be executed via **Jupyter notebooks or Python scripts**.
+
+These pipelines contribute to **gravitational lens discovery for particle dark matter searches**.
+
+---
+
+## 📂 Repository Structure
 
 ```
 ML4Sci_DeepLense/
-├── Multi_Class_Classification/     
-│   ├── dataset_sample/           # Small sample dataset (10 images per class)
+│
+├── Multi_Class_Classification/
+│   │
+│   ├── dataset_sample/                # Small sample dataset (10 images per class)
 │   │   ├── no_substructure/
 │   │   ├── subhalo/
 │   │   └── vortex/
-│   ├── models/                     
+│   │
+│   ├── models/                        # Saved trained models
 │   │   └── cnn_model.pth
-│   ├── notebooks/                  
+│   │
+│   ├── notebooks/                     # Jupyter notebooks for running pipeline
 │   │   └── CommonTestI.ipynb
-│   ├── results/                    
+│   │
+│   ├── results/                       # Output results and evaluation metrics
 │   │   ├── roc_curves.png
 │   │   ├── auc_scores.csv
 │   │   └── predictions.csv
-│   ├── scripts/                    
+│   │
+│   ├── scripts/                       # Python scripts for step-by-step pipeline
 │   │   ├── step1_load_visualize.py
 │   │   ├── step2_dataloader.py
 │   │   ├── step3_train_cnn.py
 │   │   ├── step4_evaluate.py
 │   │   └── step5_predict.py
+│   │
 │   └── README.md
 │
-├── Lens_Finding_&_Data_Pipelines/  
-│   ├── data_sample/               # Small sample dataset (few images)
+├── Lens_Finding_&_Data_Pipelines/
+│   │
+│   ├── data_sample/                   # Small sample dataset (few images)
 │   │   ├── train_lenses/
 │   │   ├── train_nonlenses/
 │   │   ├── test_lenses/
 │   │   └── test_nonlenses/
-│   ├── data/                       # Full dataset directory (not included in repo)
-│   ├── models/                     
+│   │
+│   ├── data/                          # Full dataset directory (not included in repo)
+│   │
+│   ├── models/                        # Saved trained lens detection model
 │   │   └── lens_cnn.pth
-│   ├── results/                    
+│   │
+│   ├── results/                       # Evaluation outputs
 │   │   └── roc_curve.png
-│   ├── src/                        
+│   │
+│   ├── src/                           # Source code for data pipeline and training
 │   │   ├── step1_data_pipeline.py
 │   │   ├── step2_train_cnn.py
 │   │   └── step3_evaluate.py
-│   └── notebooks/                  
+│   │
+│   └── notebooks/                     # Notebook for full lens detection workflow
 │       └── lens_detection_pipeline.ipynb
-
-
----
-
-## Datasets
-
-**⚠ Note:** Only a **small subset of the datasets** is included in this repository for testing and demonstration purposes. The full datasets are large and **not uploaded to GitHub**.
-
-**You can download the full datasets here:**
-
-* **Lens Finding & Data Pipelines Dataset:** [Google Drive Link](https://drive.google.com/file/d/1doUhVoq1-c9pamZVLpvjW1YRDMkKO1Q5/view)
-* **Multi-Class Classification Dataset:** [Google Drive Link](https://drive.google.com/file/d/1ZEyNMEO43u3qhJAwJeBZxFBEYc_pVYZQ/view)
-
-**After downloading, place the datasets in these directories:**
-
 ```
+
+
+
+# 📊 Datasets
+
+⚠ **Note:** Only **small sample datasets** are included for demonstration.  
+Full datasets are **too large for GitHub**.
+
+### Download Full Datasets
+
+**Lens Finding Dataset**
+
+https://drive.google.com/file/d/1doUhVoq1-c9pamZVLpvjW1YRDMkKO1Q5/view
+
+**Multi-Class Classification Dataset**
+
+https://drive.google.com/file/d/1ZEyNMEO43u3qhJAwJeBZxFBEYc_pVYZQ/view
+
+After downloading place them here:
+
+
 Multi_Class_Classification/dataset/
 Lens_Finding_&_Data_Pipelines/data/
-```
 
-### Multi-Class Classification (Sample)
-
-* **Format:** `.npy` arrays (150×150 pixels, grayscale)
-* **Classes:**
-
-  * `no_substructure` → label 0
-  * `subhalo` → label 1
-  * `vortex` → label 2
-* **Train/Test Split:** 90:10
-
-### Lens Finding & Data Pipelines (Sample)
-
-* **Format:** RGB images `(3, 64, 64)`
-* **Train/Test Split:** Separate `train_` and `test_` folders for lenses and non-lenses
 
 ---
 
-## Workflows / Steps
+# 📊 Dataset Description
 
-### 1. Multi-Class Classification Workflow
+## 🔹 Multi-Class Classification (Sample)
 
-**Goal:** Classify simulated lens images into three categories.
+| Property | Description |
+|--------|-------------|
+Format | `.npy` arrays |
+Image Size | **150 × 150 pixels** |
+Channels | Grayscale |
+Classes | 3 |
 
-**Steps:**
+### Class Labels
 
-1. **Load & Visualize (`step1_load_visualize.py`)** – Loads `.npy` images, converts to tensors, visualizes samples.
-2. **DataLoader (`step2_dataloader.py`)** – Creates PyTorch DataLoaders (batch size=32, shuffling).
-3. **Train CNN (`step3_train_cnn.py`)** – Simple CNN with 3 conv layers + 2 FC layers, trained for 5 epochs.
-4. **Evaluate (`step4_evaluate.py`)** – Computes predictions, ROC curves, AUC scores.
-5. **Predict (`step5_predict.py`)** – Generates predictions on new images and visualizes results.
+| Class | Label |
+|------|------|
+`no_substructure` | 0 |
+`subhalo` | 1 |
+`vortex` | 2 |
 
-**Notebook:** `CommonTestI.ipynb` – Runs all steps end-to-end.
+Train/Test Split:
 
----
 
-### 2. Lens Finding & Data Pipelines Workflow
+90% Training
+10% Testing
 
-**Goal:** Detect lensed galaxies from non-lensed galaxies in observational data.
-
-**Steps:**
-
-1. **Data Pipeline (`step1_data_pipeline.py`)** – Loads dataset, handles class imbalance, returns DataLoaders.
-2. **Train CNN (`step2_train_cnn.py`)** – Defines CNN architecture, trains for 30 epochs (CPU-friendly), saves model.
-3. **Evaluate (`step3_evaluate.py`)** – Computes test predictions, ROC curve, AUC score.
-
-**Notebook:** `lens_detection_pipeline.ipynb` – Runs full workflow including optional training and evaluation.
 
 ---
 
-## How to Run
+## 🔹 Lens Finding Dataset (Sample)
 
-### Using Notebooks
+| Property | Description |
+|--------|-------------|
+Image Format | RGB images |
+Image Shape | **(3, 64, 64)** |
+Classes | Lens / Non-Lens |
 
-```
-# Multi-Class Classification
-cd ML4Sci_DeepLense/Multi_Class_Classification/notebooks
+Dataset structure:
+
+
+train_lenses/
+train_nonlenses/
+test_lenses/
+test_nonlenses/
+
+
+Separate folders contain **training and testing data**.
+
+---
+
+# ⚙️ Workflows
+
+## 1️⃣ Multi-Class Classification Workflow
+
+**Goal:** Classify simulated gravitational lens images.
+
+### Pipeline Steps
+
+**Step 1 — Load & Visualize Data**
+
+
+step1_load_visualize.py
+
+
+- Loads `.npy` images
+- Converts arrays to tensors
+- Displays sample images
+
+---
+
+**Step 2 — Create DataLoaders**
+
+
+step2_dataloader.py
+
+
+- PyTorch DataLoader
+- Batch size: **32**
+- Shuffling enabled
+
+---
+
+**Step 3 — Train CNN**
+
+
+step3_train_cnn.py
+
+
+Model structure:
+
+
+Conv → ReLU → MaxPool
+Conv → ReLU → MaxPool
+Conv → ReLU
+Fully Connected Layers
+
+
+Training setup:
+
+- Epochs: **5**
+- Optimizer: **Adam**
+- Loss: **CrossEntropyLoss**
+
+---
+
+**Step 4 — Evaluate Model**
+
+
+step4_evaluate.py
+
+
+Outputs:
+
+- Predictions
+- ROC curves
+- AUC scores
+
+---
+
+**Step 5 — Run Predictions**
+
+
+step5_predict.py
+
+
+- Predicts new samples
+- Visualizes results
+
+Notebook:
+
+
+CommonTestI.ipynb
+
+
+Runs the **entire workflow end-to-end**.
+
+---
+
+# 🔭 Lens Finding Pipeline
+
+**Goal:** Detect lensed galaxies from non-lensed galaxies.
+
+### Step 1 — Data Pipeline
+
+
+step1_data_pipeline.py
+
+
+- Loads dataset
+- Creates DataLoaders
+- Handles class imbalance
+
+---
+
+### Step 2 — Train CNN
+
+
+step2_train_cnn.py
+
+
+Training configuration:
+
+- Epochs: **30**
+- Lightweight CNN
+- CPU-friendly
+
+Output model:
+
+
+models/lens_cnn.pth
+
+
+---
+
+### Step 3 — Evaluate Model
+
+
+step3_evaluate.py
+
+
+Outputs:
+
+- Predictions
+- ROC curve
+- AUC score
+
+Notebook:
+
+
+lens_detection_pipeline.ipynb
+
+
+Runs the **complete lens detection pipeline**.
+
+---
+
+# ▶️ How to Run
+
+## Run Using Notebooks
+
+### Multi-Class Classification
+
+
+cd C:\Users\user\ML4Sci_DeepLense\Multi_Class_Classification\notebooks
 jupyter notebook CommonTestI.ipynb
 
-# Lens Finding & Data Pipelines
-cd ML4Sci_DeepLense/Lens_Finding_&_Data_Pipelines/notebooks
+
+### Lens Finding
+
+
+cd C:\Users\user\ML4Sci_DeepLense\Lens_Finding_&_Data_Pipelines\notebooks
 jupyter notebook lens_detection_pipeline.ipynb
-```
 
-### Using Scripts
 
-**Multi-Class Classification**
+---
 
-```
+## Run Using Python Scripts
+
+### Multi-Class Classification
+
+
 python scripts/step1_load_visualize.py
 python scripts/step2_dataloader.py
 python scripts/step3_train_cnn.py
 python scripts/step4_evaluate.py
 python scripts/step5_predict.py
-```
 
-**Lens Finding**
 
-```
+### Lens Finding
+
+
 python src/step1_data_pipeline.py
 python src/step2_train_cnn.py
 python src/step3_evaluate.py
-```
+
 
 ---
 
-## Results
+# 📈 Results
 
-### Multi-Class Classification (Sample)
+## Multi-Class Classification
 
-* **ROC Curves:**
-  ![ROC Curves](Multi_Class_Classification/results/roc_curves.png)
-* **AUC Scores:**
+ROC Curves:
 
-| Class           | AUC Score |
-| --------------- | --------- |
-| No Substructure | 0.98      |
-| Subhalo         | 0.95      |
-| Vortex          | 0.97      |
+![ROC Curves](Multi_Class_Classification/results/roc_curves.png)
 
-* **Predictions:** Visualized in notebook
-* **Trained Model:** `models/cnn_model.pth`
+| Class | AUC |
+|-----|------|
+No Substructure | **0.98** |
+Subhalo | **0.95** |
+Vortex | **0.97** |
 
-### Lens Finding & Data Pipelines (Sample)
+Trained model:
 
-* **ROC Curve:**
-  ![Lens ROC Curve](Lens_Finding_&_Data_Pipelines/results/roc_curve.png)
-* **AUC Score:** ~0.9737
-* **Trained Model:** `models/lens_cnn.pth`
+
+models/cnn_model.pth
+
 
 ---
 
-## Requirements
+## Lens Finding
 
-* Python ≥ 3.9
-* PyTorch, torchvision
-* NumPy, Pandas, Matplotlib
-* scikit-learn
+ROC Curve:
 
-*GPU recommended for large datasets, CPU-friendly for smaller runs.*
+![Lens ROC](Lens_Finding_&_Data_Pipelines/results/roc_curve.png)
+
+Performance:
+
+
+AUC ≈ 0.9737
+
+
+Model:
+
+
+models/lens_cnn.pth
+
+
+---
+
+# 📦 Requirements
+
+
+Python >= 3.9
+PyTorch
+torchvision
+NumPy
+Pandas
+Matplotlib
+scikit-learn
+
+
+GPU recommended for large datasets but **CPU works for smaller runs**.
 
 ---
 
-## Notes
+# 📝 Notes
 
-* Both workflows are **modular** and **mentor-friendly**
-* Weighted loss handles class imbalance (Lens Finding workflow)
-* Notebooks show **step-by-step execution** without duplicating code
-* Contributes to **particle dark matter searches** via strong gravitational lens detection
-* Only **sample datasets** are included; full datasets can be downloaded from the links above
+- Modular deep learning pipelines
+- Handles class imbalance
+- Notebook-based reproducible experiments
+- Demonstrates application of **deep learning in astronomy**
+
+---
+
+# 👨‍💻 Author
+
+**Shahidul Islam**
+
+B.Sc. in Textile Engineering  
+Barishal Textile Engineering College  
+Bangladesh University of Textiles (BUTEX)
+
+Prospective **Google Summer of Code 2026 Contributor**  
+ML4SCI – DeepLense Project
 
 ---
 
-## License
+# 📜 License
 
-Open-source, free for **educational purposes**.
-
----
+Open source for **educational and research purposes**.
