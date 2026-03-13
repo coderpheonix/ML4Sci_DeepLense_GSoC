@@ -365,9 +365,9 @@ ROC Curves:
 
 | Class | AUC |
 |-----|------|
-No Substructure | **0.98** |
-Subhalo | **0.95** |
-Vortex | **0.97** |
+No Substructure | **0.51** |
+Subhalo | **0.50** |
+Vortex | **0.52** |
 
 Trained model:
 
